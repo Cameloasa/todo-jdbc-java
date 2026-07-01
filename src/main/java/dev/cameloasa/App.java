@@ -1,87 +1,87 @@
 package dev.cameloasa;
 
-import dev.cameloasa.dao.daoimpl.PersonDao;
-import dev.cameloasa.dao.daoimpl.PersonDaoImpl;
-import dev.cameloasa.dao.daoimpl.TodoItemDao;
-import dev.cameloasa.dao.daoimpl.TodoItemDaoImpl;
+import dev.cameloasa.dao.PersonDao;
+import dev.cameloasa.dao.TodoItemDao;
+import dev.cameloasa.daoimpl.PersonDaoImpl;
+import dev.cameloasa.daoimpl.TodoItemDaoImpl;
 import dev.cameloasa.model.Person;
 import dev.cameloasa.model.TodoItem;
+
 import java.time.LocalDate;
-import java.util.Collection;
+import java.util.List;
+import java.util.Optional;
 
 public class App {
 
-  public static void main(String[] args) {
-    // Create an instance of PersonDaoImpl
-    PersonDao personDao = new PersonDaoImpl();
+    public static void main(String[] args) {
 
-    // Create a new person
-    Person newPerson = new Person("John", "Doe");
+        PersonDao personDao = new PersonDaoImpl();
+        TodoItemDao todoItemDao = new TodoItemDaoImpl();
 
-    // Add the new person to the database
-    Person createdPerson = personDao.create(newPerson);
-    System.out.println("Created person: " + createdPerson);
+        // Create Person
+        Person john = new Person("John", "Doe");
+        john = personDao.create(john);
+        System.out.println("Created person: " + john);
 
-    // Find a person by ID
-    Person foundById = personDao.findById(createdPerson.getPerson_id());
-    System.out.println("Found person by ID: " + foundById);
+        // Find Person by ID
+        Optional<Person> foundPerson = personDao.findById(john.getPersonId());
+        foundPerson.ifPresent(p -> System.out.println("Found person: " + p));
 
-    // Find all people
-    Collection<Person> allPeople = personDao.findAll();
-    System.out.println("All people: " + allPeople);
+        // Find all Persons
+        List<Person> allPeople = personDao.findAll();
+        System.out.println("All people: " + allPeople);
 
-    // Find people by first name
-    Collection<Person> byFirstName = personDao.findByFirst_name("John");
-    System.out.println("People with first name John: " + byFirstName);
+        // Find by first name
+        List<Person> johns = personDao.findByFirstName("John");
+        System.out.println("People named John: " + johns);
 
-    // Find people by last name
-    Collection<Person> byLastName = personDao.findByLast_name("Doe");
-    System.out.println("People with last name Doe: " + byLastName);
-    // Update the person
-    createdPerson.setFirst_name("Jane");
-    createdPerson.setLast_name("Smith");
-    Person updatedPerson = personDao.update(createdPerson);
-    System.out.println("Updated person: " + updatedPerson);
+        // Update Person
+        john.setFirstName("Jane");
+        john.setLastName("Smith");
+        boolean updated = personDao.update(john);
+        System.out.println("Person updated: " + updated);
 
-    // Delete the person
-    boolean deleted = personDao.delete(createdPerson.getPerson_id());
-    System.out.println("Person deleted: " + deleted);
+        // Delete Person
+        boolean deleted = personDao.delete(john.getPersonId());
+        System.out.println("Person deleted: " + deleted);
 
-    // Create a new todoItem
-    TodoItem newTodoItem =
-        new TodoItem("Buy milk", "Go to the grocery store", LocalDate.now(), false, 1);
 
-    // Create an instance of todoItemDao
-    TodoItemDao todoItemDao = new TodoItemDaoImpl();
+        // Create TodoItem
+        TodoItem todo = new TodoItem(
+                "Buy milk",
+                "Go to the grocery store",
+                LocalDate.now(),
+                false,
+                1
+        );
 
-    // Add the new todoItem to the database
-    TodoItem createdTodoItem = todoItemDao.create(newTodoItem);
-    System.out.println("Created todoItem: " + createdTodoItem);
+        todo = todoItemDao.create(todo);
+        System.out.println("Created todo item: " + todo);
 
-    // Find a todoItem by ID
-    TodoItem findById = todoItemDao.findById(createdTodoItem.getTodo_id());
-    System.out.println("Found todoItem by ID: " + findById);
+        // Find TodoItem by ID
+        Optional<TodoItem> foundTodo = todoItemDao.findById(todo.getTodoId());
+        foundTodo.ifPresent(t -> System.out.println("Found todo item: " + t));
 
-    // Find all todoItems
-    Collection<TodoItem> allTodoItems = todoItemDao.findAll();
-    System.out.println("All todoItems: " + allTodoItems);
+        // Find all TodoItems
+        List<TodoItem> allTodos = todoItemDao.findAll();
+        System.out.println("All todo items: " + allTodos);
 
-    // Find todoItems by done status
-    Collection<TodoItem> byDoneStatus = todoItemDao.findByDoneStatus(false);
-    System.out.println("TodoItems with done status false: " + byDoneStatus);
+        // Find by done status
+        List<TodoItem> notDone = todoItemDao.findByDoneStatus(false);
+        System.out.println("Todo items not done: " + notDone);
 
-    // Find todoItems by assignee
-    Collection<TodoItem> byAssignee = todoItemDao.findByAssignee(1);
-    System.out.println("TodoItems with assignee: " + byAssignee);
+        // Find by assignee
+        List<TodoItem> assignedTo1 = todoItemDao.findByAssigneeId(1);
+        System.out.println("Todo items assigned to 1: " + assignedTo1);
 
-    // Update the todoItem
-    createdTodoItem.setAssignee_id(2);
-    createdTodoItem.setDone(true);
-    TodoItem updatedTodoItem = todoItemDao.update(createdTodoItem);
-    System.out.println("Updated todoItem: " + updatedTodoItem);
+        // Update TodoItem
+        todo.setDone(true);
+        todo.setAssigneeId(2);
+        boolean todoUpdated = todoItemDao.update(todo);
+        System.out.println("Todo item updated: " + todoUpdated);
 
-    // Delete the todoItem
-    boolean deletedTodoItem = todoItemDao.deleteById(createdTodoItem.getTodo_id());
-    System.out.println("TodoItem deleted: " + deletedTodoItem);
-  }
+        // Delete TodoItem
+        boolean todoDeleted = todoItemDao.deleteById(todo.getTodoId());
+        System.out.println("Todo item deleted: " + todoDeleted);
+    }
 }

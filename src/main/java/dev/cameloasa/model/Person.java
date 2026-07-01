@@ -1,64 +1,53 @@
 package dev.cameloasa.model;
 
 public class Person {
-  private int person_id;
-  private String first_name;
-  private String last_name;
+    private int personId;
+    private String firstName;
+    private String lastName;
 
-  // Default constructor
-  public Person() {}
+    public Person() {}
 
-  public Person(String first_name, String last_name) {
-    this.first_name = first_name;
-    this.last_name = last_name;
-  }
+    public Person(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
 
-  // Overloaded constructor
-  public Person(int person_id, String first_name, String last_name) {
-    this.person_id = person_id;
-    this.first_name = first_name;
-    this.last_name = last_name;
-  }
+    public Person(int personId, String firstName, String lastName) {
+        this.personId = personId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
 
-  // Getters
-  public int getPerson_id() {
-    return person_id;
-  }
+    public int getPersonId() {
+        return personId;
+    }
 
-  public String getFirst_name() {
-    return first_name;
-  }
+    public void setPersonId(int personId) {
+        this.personId = personId;
+    }
 
-  public String getLast_name() {
-    return last_name;
-  }
+    public String getFirstName() {
+        return firstName;
+    }
 
-  // Setters
-  public void setId(int id) {
-    this.person_id = id;
-  }
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
 
-  public void setFirst_name(String first_name) {
-    this.first_name = first_name;
-  }
+    public String getLastName() {
+        return lastName;
+    }
 
-  public void setLast_name(String last_name) {
-    this.last_name = last_name;
-  }
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 
-  // toString
-
-  @Override
-  public String toString() {
-    return "Person{"
-        + "person_id="
-        + person_id
-        + ", first_name='"
-        + first_name
-        + '\''
-        + ", last_name='"
-        + last_name
-        + '\''
-        + '}';
-  }
+    @Override
+    public String toString() {
+        return "Person{" +
+                "personId=" + personId +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                '}';
+    }
 }

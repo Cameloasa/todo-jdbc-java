@@ -3,95 +3,101 @@ package dev.cameloasa.model;
 import java.time.LocalDate;
 
 public class TodoItem {
-  private int todo_id;
-  private String title;
-  private String description;
-  private LocalDate deadline;
-  private boolean done;
-  private int assignee_id;
 
-  public TodoItem() {}
+    private int todoId;
+    private String title;
+    private String description;
+    private LocalDate deadline;
+    private boolean done;
+    private int assigneeId;
 
-  public TodoItem(
-      String title, String description, LocalDate deadline, boolean done, int assignee_id) {
-    this.todo_id = todo_id;
-    this.title = title;
-    this.description = description;
-    this.deadline = deadline;
-    this.done = done;
-    this.assignee_id = assignee_id;
-  }
+    public TodoItem() {}
 
-  public TodoItem(String title, String description, LocalDate deadline, int assignee_id) {
-    this.title = title;
-    this.description = description;
-    this.deadline = deadline;
-    this.assignee_id = assignee_id;
-  }
+    public TodoItem(String title, String description, LocalDate deadline, boolean done, int assigneeId) {
+        this.title = title;
+        this.description = description;
+        this.deadline = deadline;
+        this.done = done;
+        this.assigneeId = assigneeId;
+    }
 
-  // Getters
+    public TodoItem(String title, String description, LocalDate deadline, int assigneeId) {
+        this.title = title;
+        this.description = description;
+        this.deadline = deadline;
+        this.assigneeId = assigneeId;
+    }
 
-  public int getTodo_id() {
-    return todo_id;
-  }
+    public TodoItem(int todoId, String title, String description, LocalDate deadline, boolean done, int assigneeId) {
+        this.todoId = todoId;
+        this.title = title;
+        this.description = description;
+        this.deadline = deadline;
+        this.done = done;
+        this.assigneeId = assigneeId;
+    }
 
-  public String getTitle() {
-    return title;
-  }
+    public int getTodoId() {
+        return todoId;
+    }
 
-  public String getDescription() {
-    return description;
-  }
+    public void setTodoId(int todoId) {
+        this.todoId = todoId;
+    }
 
-  public LocalDate getDeadline() {
-    return deadline;
-  }
+    public String getTitle() {
+        return title;
+    }
 
-  public boolean isDone() {
-    return done;
-  }
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
-  public int getAssignee_id() {
-    return assignee_id;
-  }
+    public String getDescription() {
+        return description;
+    }
 
-  // Setters
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-  public void setTodo_id(int todo_id) {
-    this.todo_id = todo_id;
-  }
+    public LocalDate getDeadline() {
+        return deadline;
+    }
 
-  public void setAssignee_id(int assignee_id) {
-    this.assignee_id = assignee_id;
-  }
+    public void setDeadline(LocalDate deadline) {
+        this.deadline = deadline;
+    }
 
-  public void setDone(boolean done) {
-    this.done = done;
-  }
+    public boolean isDone() {
+        return done;
+    }
 
-  public boolean isAssignee(int person_id) {
-    return this.assignee_id == person_id;
-  }
+    public void setDone(boolean done) {
+        this.done = done;
+    }
 
-  // ToString
+    public int getAssigneeId() {
+        return assigneeId;
+    }
 
-  @Override
-  public String toString() {
-    return "TodoItem{"
-        + "todo_id="
-        + todo_id
-        + ", title='"
-        + title
-        + '\''
-        + ", description='"
-        + description
-        + '\''
-        + ", deadline="
-        + deadline
-        + ", done="
-        + done
-        + ", assignee_id="
-        + assignee_id
-        + '}';
-  }
+    public void setAssigneeId(int assigneeId) {
+        this.assigneeId = assigneeId;
+    }
+
+    public boolean isAssignee(int personId) {
+        return this.assigneeId == personId;
+    }
+
+    @Override
+    public String toString() {
+        return "TodoItem{" +
+                "todoId=" + todoId +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", deadline=" + deadline +
+                ", done=" + done +
+                ", assigneeId=" + assigneeId +
+                '}';
+    }
 }

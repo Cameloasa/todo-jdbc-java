@@ -1,5 +1,6 @@
+
 -- =====================================================
--- SQLite schema for todo-jdbc project
+-- SQLite schema for todo-jdbc project scripts/schema.sql
 -- =====================================================
 
 -- Table: person
