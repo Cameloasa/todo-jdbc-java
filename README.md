@@ -1,9 +1,9 @@
-# ToDo App – Java JDBC Project
+# ToDo App – Java JDBC + Javalin REST API
 
-This project is a Java OOP implementation of a simple To‑Do management system.
-It demonstrates object‑oriented design, relationships between classes, encapsulation, and basic business logic.
+This project is a complete Java application for managing to‑do items and subtasks.
+It demonstrates clean object‑oriented design, layered architecture, and a fully functional REST API built with Javalin.
 
-The project is part of a collection of older Java exercises currently being updated and prepared for future improvements and migration into a GitHub organization.
+Originally part of a collection of older Java exercises, the project has now been modernized and prepared for future improvements and migration into a dedicated GitHub organization.
 
 ## 🎯 Project Purpose
 
@@ -67,21 +67,91 @@ src/
     java/
       dev/cameloasa/
         App.java
-        model/
-          Person.java
-          TodoItem.java 
+        WebApp.java
         db/
           schema.sql
+          DatabaseInitializer.java
         dao/
-          daoimpl/
-            PersonDao.java
-            PersonDaoImpl.java
-            TodoItemDao.java 
-            
+          Person.java
+          TodoItem.java
+          TodoItemTask.java 
+        daoimpl/
+          Person.java
+          TodoItem.java
+          TodoItemTask.java 
+        service/
+          Person.java
+          TodoItem.java
+          TodoItemTask.java 
+        controller/
+          Person.java
+          TodoItem.java
+          TodoItemTask.java 
+        web/
+          Person.java
+          TodoItem.java
+          TodoItemTask.java 
   test/
     java/
       dev/cameloasa/
 ```
+
+## 🌐 REST API Endpoints
+
+```text
+Person
+GET /people
+
+GET /people/{id}
+
+POST /people
+
+PUT /people/{id}
+
+DELETE /people/{id}
+
+TodoItem
+GET /items
+
+GET /items/{id}
+
+POST /items
+
+PUT /items/{id}
+
+DELETE /items/{id}
+
+GET /items/done/{status}
+
+GET /items/unassigned
+
+GET /items/overdue
+
+GET /items/deadline/{date}
+
+GET /items/title/{title}
+
+TodoItemTask
+GET /tasks
+
+GET /tasks/{id}
+
+POST /tasks
+
+PUT /tasks/{id}
+
+DELETE /tasks/{id}
+
+GET /tasks/todoitem/{todoItemId}
+
+GET /tasks/done/{status}
+
+GET /tasks/title/{title}
+
+GET /tasks/overdue
+```
+
+The REST API will be available at: [http://localhost:7000]
 
 ## 🧪 Running the Project
 
@@ -122,3 +192,19 @@ Check code style (Checkstyle):
 ```bash
 mvn checkstyle:check
 ```
+
+## 🚀 Future Improvements
+
+Migration to Spring Boot
+
+Hot reload with DevTools
+
+DTOs for request/response
+
+Validation with Jakarta Validation
+
+Automatic mapping with MapStruct
+
+React + TypeScript frontend
+
+Docker support
